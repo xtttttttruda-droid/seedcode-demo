@@ -1,0 +1,8 @@
+User-Agent: *
+Allow: /
+Disallow: /ops
+Disallow: /ops/
+Disallow: /prototype-map
+Disallow: /design/
+Disallow: /c/
+
