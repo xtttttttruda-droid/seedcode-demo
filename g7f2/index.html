@@ -1,6 +1,7 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1d4ed8"><title>种草码 · 商家端操作手册</title>
+<meta name="theme-color" content="#1d4ed8">
+<meta name="robots" content="noindex,nofollow,noarchive"><title>种草码 · 商家端操作手册</title>
 <style>:root{--brand:#1d4ed8;--brand-2:#3b82f6;--ink:#0f172a;--muted:#5b6472;--line:#e6e9ef;--bg:#f5f7fb;--card:#fff}
 *{box-sizing:border-box}
 body{margin:0;font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-text-size-adjust:100%}
@@ -42,7 +43,33 @@ a.top-btn{position:fixed;right:12px;bottom:16px;background:rgba(29,78,216,.92);c
 @media(min-width:760px){.hero{padding:40px 24px}.hero h1{font-size:34px}main{padding:20px 24px 90px}.card{padding:24px}}
 
 a{color:#1d4ed8}
-p a{word-break:break-all}</style></head><body>
+p a{word-break:break-all}
+body.locked{overflow:hidden}
+#gate{position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#0f172a,#1e3a8a 70%,#1d4ed8);display:flex;align-items:center;justify-content:center;padding:24px}
+#gate .gate-card{background:#fff;border-radius:18px;padding:26px 22px;max-width:340px;width:100%;text-align:center;box-shadow:0 24px 60px -24px rgba(0,0,0,.5)}
+#gate .glogo{width:44px;height:44px;border-radius:12px;margin:0 auto 12px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700}
+#gate h2{font-size:18px;margin:0 0 6px}
+#gate p.tip{font-size:12.5px;color:#64748b;margin:0 0 16px}
+#gate input{width:100%;padding:12px 14px;border:1px solid #e2e8f0;border-radius:10px;font-size:16px;text-align:center;letter-spacing:.14em;outline:none;box-sizing:border-box}
+#gate input:focus{border-color:#1d4ed8;box-shadow:0 0 0 3px rgba(29,78,216,.12)}
+#gate button{margin-top:12px;width:100%;padding:13px;border:0;border-radius:10px;background:#1d4ed8;color:#fff;font-size:15px;font-weight:600}
+#gate button:active{opacity:.9}
+#gate .err{color:#dc2626;font-size:12.5px;margin:10px 0 0;min-height:16px}
+#gate .foot{font-size:11px;color:#94a3b8;margin:14px 0 0}
+</style></head><body class="locked">
+
+<div id="gate">
+  <div class="gate-card">
+    <div class="glogo">种</div>
+    <h2>商家端操作手册</h2>
+    <p class="tip">内部资料 · 请输入访问口令</p>
+    <input id="gateCode" inputmode="text" autocomplete="off" placeholder="访问口令">
+    <button id="gateBtn" type="button">进入</button>
+    <p class="err" id="gateErr"></p>
+    <p class="foot">如不知道口令，请联系你的服务顾问</p>
+  </div>
+</div>
+
 <header class="top"><span class="logo">种</span><h1>商家端操作手册</h1><span class="sub">v1.0</span></header>
 <div class="hero"><div class="kicker">种草码 · 顾客真实体验</div><h1>商家端操作手册</h1><p>从登录、完善门店资料，到提交审核与投放二维码 — 手机即可阅读</p></div>
 <main><div class="card"><h2 class="sec-title">使用说明</h2>
@@ -196,4 +223,28 @@ p a{word-break:break-all}</style></head><body>
 <div class="table-wrap"><table><thead><tr><th>名词</th><th>解释</th></tr></thead><tbody><tr><td>账号 / 商家账号</td><td>服务顾问开通的登录账号，一个账号可管理名下多家门店</td></tr><tr><td>门店资料</td><td>门店基本信息 + 行业信息 + 图片，统称“资料”</td></tr><tr><td>提交审核</td><td>把资料与图片一起送运营审核，通过后才会对外生效</td></tr><tr><td>投放二维码 / 专属二维码</td><td>每家门店固定的二维码，顾客扫码直达本店内容</td></tr><tr><td>投放物料</td><td>二维码的三种展示样式（极简码 / 贴纸码 / 桌卡风）</td></tr><tr><td>产品部署</td><td>顾客扫码后使用的生成与发布能力；未部署时扫码会提示「准备中」</td></tr><tr><td>POI</td><td>小红书上的门店位置；未绑定时笔记不带门店定位</td></tr><tr><td>中间页</td><td>顾客扫码后先看到的过渡页（显示门店名 + 打开小红书）</td></tr></tbody></table></div>
 <p>—— 本手册基于 2026-11-25 线上版本整理，如界面有更新以实际页面为准 ——</p>
 </div><footer>本手册基于 2026-11-25 线上版本整理，如界面有更新以实际页面为准</footer></main>
-<a class="top-btn" href="#toc">目录</a></body></html>
+<a class="top-btn" href="#toc">目录</a>
+<script>
+(function(){
+  var CODE='zzm2026';
+  var KEY='zzm_manual_ok';
+  var gate=document.getElementById('gate');
+  function unlock(){
+    document.body.classList.remove('locked');
+    if(gate&&gate.parentNode) gate.parentNode.removeChild(gate);
+  }
+  try{ if(localStorage.getItem(KEY)===CODE){ unlock(); return; } }catch(e){}
+  var input=document.getElementById('gateCode');
+  var err=document.getElementById('gateErr');
+  function submit(){
+    var v=(input.value||'').trim().toLowerCase();
+    if(v===CODE){ try{localStorage.setItem(KEY,CODE);}catch(e){} unlock(); }
+    else { err.textContent='口令不正确，请重新输入'; input.value=''; input.focus(); }
+  }
+  document.getElementById('gateBtn').addEventListener('click',submit);
+  input.addEventListener('keydown',function(e){ if(e.key==='Enter') submit(); });
+  setTimeout(function(){ input.focus(); },300);
+})();
+</script>
+
+</body></html>
